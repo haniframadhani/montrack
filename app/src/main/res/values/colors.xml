@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <color name="black">#FF0F0F12</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="Carmine">#FFE00043</color>
+    <color name="Alien_Armpit">#FF70E000</color>
+    <color name="Maastricht_Blue">#FF00172D</color>
+    <color name="USAFA_Blue">#FF004E98</color>
 </resources>
