@@ -7,27 +7,54 @@
     android:background="@color/white"
     tools:context=".Profile">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="16dp">
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/profile_13" />
+
+            <TextView
+                android:id="@+id/pengguna"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="nama pengguna"
+                android:textSize="21sp"
+                android:fontFamily="@font/work_sans_medium"/>
+        </LinearLayout>
 
         <Button
             android:id="@+id/textButton"
             style="@style/Widget.Material3.Button.TextButton.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="340dp"
-            android:textAlignment="textStart"
+            android:layout_marginTop="32dp"
             android:text="logout"
-            app:icon="@drawable/logout"
+            android:textAlignment="textStart"
             android:textColor="@color/black"
+            android:textSize="17sp"
+            app:icon="@drawable/logout"
             app:iconTint="@color/black"
-            android:textSize="14.5sp"
+            app:iconPadding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
