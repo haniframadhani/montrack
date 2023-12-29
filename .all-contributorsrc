@@ -1,5 +1,5 @@
 {
-  "projectName": "montrak",
+  "projectName": "montrack",
   "projectOwner": "haniframadhani ",
   "files": [
     "README.md"
@@ -10,6 +10,5 @@
   "repoHost": "https://github.com",
   "commitConvention": "angular",
   "skipCi": true,
-  "commitType": "docs",
-  "contributors": []
+  "commitType": "docs"
 }
