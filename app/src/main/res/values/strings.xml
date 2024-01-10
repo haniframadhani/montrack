@@ -3,6 +3,21 @@
     <string name="page_home">beranda</string>
     <string name="page_analysis">analisis</string>
     <string name="page_profile">profil</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="pemasukkan">
+        <item>gaji</item>
+        <item>hadiah</item>
+        <item>investasi</item>
+    </string-array>
+    <string-array name="pengeluaran">
+        <item>makanan</item>
+        <item>internet</item>
+        <item>bahan bakar</item>
+        <item>obat</item>
+        <item>gawai</item>
+        <item>belanja</item>
+        <item>travelling</item>
+        <item>gim</item>
+        <item>olahraga</item>
+        <item>kecantikan</item>
+    </string-array>
 </resources>

@@ -101,4 +101,24 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/tambah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:contentDescription="tambah aktivitas"
+            app:backgroundTint="@color/USAFA_Blue"
+            app:elevation="0dp"
+            app:hoveredFocusedTranslationZ="2dp"
+            app:pressedTranslationZ="2dp"
+            app:rippleColor="@color/Dark_Sky_Blue"
+            app:srcCompat="@drawable/add"
+            app:tint="@color/white" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </FrameLayout>
