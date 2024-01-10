@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId) {
                 R.id.home -> replaceFragment(Home())
                 R.id.analysis -> replaceFragment(Analysis())
-                R.id.profile -> replaceFragment(Profile())
 
                 else ->{
 

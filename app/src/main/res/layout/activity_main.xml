@@ -23,7 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:itemActiveIndicatorStyle="@color/white"
+        app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
         app:itemIconSize="32dp"
         app:itemIconTint="@color/icons_colors"
         app:layout_constraintBottom_toBottomOf="parent"
