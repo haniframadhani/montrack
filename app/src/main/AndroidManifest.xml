@@ -13,13 +13,13 @@
         android:theme="@style/Theme.MonTrack"
         tools:targetApi="31">
         <activity
-            android:name=".ActivityActivity"
+            android:name=".PengeluaranActivity"
             android:exported="false" />
         <activity
             android:name=".PemasukkanActivity"
             android:exported="false" />
         <activity
-            android:name=".PengeluaranActivity"
+            android:name=".ActivityActivity"
             android:exported="false" />
         <activity
             android:name=".Login"
