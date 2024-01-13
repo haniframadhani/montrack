@@ -1,6 +1,3 @@
 <resources>
     <string name="app_name">MonTrack</string>
-    <string name="page_home">beranda</string>
-    <string name="page_analysis">analisis</string>
-    <string name="page_profile">profil</string>
 </resources>

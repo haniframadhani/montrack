@@ -51,7 +51,7 @@
                 android:id="@+id/jenis_aktivitas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/worksans_semibold"
+                android:fontFamily="@font/work_sans_semibold"
                 android:text="nama aktivitas"
                 android:textSize="17sp" />
 
@@ -64,7 +64,7 @@
                 android:id="@+id/tanggal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/worksans_light"
+                android:fontFamily="@font/work_sans_light"
                 android:text="01/01/1970"
                 android:textAlignment="textEnd"
                 android:textSize="10sp" />
@@ -78,6 +78,7 @@
             android:text="Rp 0"
             android:textAlignment="viewEnd"
             android:textSize="14.5sp"
+            android:fontFamily="@font/work_sans_regular"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
