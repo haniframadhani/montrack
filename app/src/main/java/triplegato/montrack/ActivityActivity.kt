@@ -27,6 +27,7 @@ class ActivityActivity : AppCompatActivity() {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             WindowCompat.getInsetsController(window, window.decorView).apply {
                 isAppearanceLightStatusBars = false
+                isAppearanceLightNavigationBars = true
             }
         }
 
