@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +22,7 @@ import java.util.Locale
 class AktivitasAdapter(private var aktivitas: List<Aktivitas>, context: Context) :
     RecyclerView.Adapter<AktivitasAdapter.AktivitasViewHolder>()
 {
-    private var listener: AdapterView.OnItemClickListener? = null
+
     class AktivitasViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val category: TextView = itemView.findViewById(R.id.jenis_aktivitas)
         val jumlah: TextView = itemView.findViewById(R.id.harga)
@@ -74,6 +76,7 @@ class AktivitasAdapter(private var aktivitas: List<Aktivitas>, context: Context)
             else -> R.drawable.fastfood
         }
         holder.icon.setImageResource(drawableResId)
+
         holder.container.setOnClickListener{
             if (aktivitas.jenis == "pemasukkan"){
                 val intent = Intent(holder.itemView.context, PemasukkanActivity::class.java).apply {
