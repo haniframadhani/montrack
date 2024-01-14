@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import triplegato.montrack.databinding.FragmentPengeluaranBinding
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,6 +30,8 @@ class PengeluaranFragment : Fragment() {
 
     private var _binding: FragmentPengeluaranBinding?= null
     private val binding get() = _binding!!
+    private lateinit var db: AktivitasDatabaseHelper
+    private var selectedDate: Long = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +39,7 @@ class PengeluaranFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        db = AktivitasDatabaseHelper(requireContext())
     }
 
     override fun onCreateView(
@@ -66,11 +72,27 @@ class PengeluaranFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val activity = requireActivity()
         binding.date.setOnClickListener {
             showDatePickerDialog()
         }
+        binding.simpan.setOnClickListener {
+            val jenis = "pengeluaran"
+            val jumlahString = binding.jumlahValue.text.toString()
+            val jumlahNumber = if(jumlahString.isNotEmpty()){
+                jumlahString.toInt()
+            }else {
+                0
+            }
+            val kategori = binding.listKategori.text.toString()
+            val deskripsi = binding.deskripsiValue.text.toString()
+            val tanggal = selectedDate
+            val aktivitas = Aktivitas(0,kategori,tanggal,jumlahNumber,jenis,"",deskripsi)
+            db.insertAktivitas(aktivitas)
+            activity.finish()
+            Toast.makeText(requireContext(),"aktivitas tersimpan", Toast.LENGTH_SHORT).show()
+        }
         binding.batal.setOnClickListener{
-            val activity = requireActivity()
             activity.finish()
         }
     }
@@ -86,9 +108,11 @@ class PengeluaranFragment : Fragment() {
         val month = calendar.get(Calendar.MONTH)
         val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(requireContext(), { _, year, month, dayOfMonth ->
-            val selectedDate = String.format("%02d/%02d/%04d", dayOfMonth, month + 1, year)
-            binding.date.setText(selectedDate)
+        val datePickerDialog = DatePickerDialog(requireContext(),
+            { _, year, month, dayOfMonth ->
+                calendar.set(year, month, dayOfMonth)
+                selectedDate = calendar.timeInMillis
+            binding.date.setText(SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(calendar.time))
         }, year, month, dayOfMonth)
 
         datePickerDialog.show()
