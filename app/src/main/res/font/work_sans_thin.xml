@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<font
+    android:font="@font/worksans_thin"
+    android:fontStyle="normal"
+    android:fontWeight="100"
+    app:font="@font/worksans_thin"
+    app:fontStyle="normal"
+    app:fontWeight="100"/>
+    <font
+    android:font="@font/worksans_thinitalic"
+    android:fontStyle="italic"
+    android:fontWeight="100"
+    app:font="@font/worksans_thinitalic"
+    app:fontStyle="italic"
+    app:fontWeight="100"/>
+</font-family>
