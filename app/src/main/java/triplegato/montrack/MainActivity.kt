@@ -32,5 +32,22 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         aktivitasAdapter.refreshData(db.getAllAktivitas())
+        binding.outcomeAmountIncome.text = totalIncome()
+        binding.outcomeAmountOutcome.text = totalOutcome()
+
+    }
+
+    fun totalIncome() : String{
+        var total = db.getIncomeTotal()
+        total = total/1000
+        total.toString()
+        return "$total"+"K"
+    }
+
+    fun totalOutcome() : String{
+        var total = db.getOutcomeTotal()
+        total = total/1000
+        total.toString()
+        return "$total"+"K"
     }
 }
