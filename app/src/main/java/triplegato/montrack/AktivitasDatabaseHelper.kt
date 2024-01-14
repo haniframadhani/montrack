@@ -17,6 +17,8 @@ class AktivitasDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
         private const val COLUMN_JUMLAH = "jumlah"
         private const val COLUMN_LOKASI = "lokasi"
         private const val COLUMN_DESKRIPSI = "deskripsi"
+        private const val PENGELUARAN = "pengeluaran"
+        private const val PEMASUKAN = "pemasukkan"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -53,7 +55,7 @@ class AktivitasDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
     fun getAllAktivitas(): List<Aktivitas> {
         val aktivitasList = mutableListOf<Aktivitas>()
         val db = readableDatabase
-        val query = "SELECT * FROM $TABLE_NAME"
+        val query = "SELECT * FROM $TABLE_NAME ORDER BY $COLUMN_TANGGAL DESC"
         val cursor = db.rawQuery(query, null)
 
         while(cursor.moveToNext()){
@@ -71,6 +73,40 @@ class AktivitasDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
         cursor.close()
         db.close()
         return aktivitasList
-
     }
+
+    fun getIncomeTotal(): Int {
+        val db = readableDatabase
+        val query = "SELECT SUM($COLUMN_JUMLAH) AS Total FROM $TABLE_NAME WHERE $COLUMN_JENIS_AKTIVITAS = 'pemasukkan'"
+        val cursor = db.rawQuery(query, null)
+
+        var total = 0
+
+        if (cursor.moveToFirst()) {
+            total = cursor.getInt(cursor.getColumnIndexOrThrow("Total"))
+        }
+
+        cursor.close()
+        db.close()
+
+        return total
+    }
+
+    fun getOutcomeTotal(): Int {
+        val db = readableDatabase
+        val query = "SELECT SUM($COLUMN_JUMLAH) AS Total FROM $TABLE_NAME WHERE $COLUMN_JENIS_AKTIVITAS = 'pengeluaran'"
+        val cursor = db.rawQuery(query, null)
+
+        var total = 0
+
+        if (cursor.moveToFirst()) {
+            total = cursor.getInt(cursor.getColumnIndexOrThrow("Total"))
+        }
+
+        cursor.close()
+        db.close()
+
+        return total
+    }
+
 }
