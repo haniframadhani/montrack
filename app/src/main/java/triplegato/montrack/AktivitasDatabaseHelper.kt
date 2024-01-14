@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class AktivitasDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+
     companion object {
         private const val DATABASE_NAME = "montrack.db"
         private const val DATABASE_VERSION = 1
@@ -108,5 +109,15 @@ class AktivitasDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
 
         return total
     }
+
+    fun deleteAktivitas(id : Int){
+        val db = readableDatabase
+        val whereClause = "$COLUMN_ID = ?"
+        val whereArgs = arrayOf(id.toString())
+        db.delete(TABLE_NAME, whereClause, whereArgs)
+        db.close()
+    }
+
+
 
 }
