@@ -8,7 +8,7 @@ import triplegato.montrack.databinding.ActivityPengeluaranBinding
 
 class PengeluaranActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPengeluaranBinding
-    private lateinit var db : AktivitasDatabaseHelper
+    private lateinit var db : AktivitasDatabaseHelper 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
