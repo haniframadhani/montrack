@@ -1,6 +1,7 @@
 package triplegato.montrack
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -75,6 +76,9 @@ class PengeluaranFragment : Fragment() {
         val activity = requireActivity()
         binding.date.setOnClickListener {
             showDatePickerDialog()
+        }
+        binding.tempat.setOnClickListener {
+            startActivity(Intent(requireContext(),MapsActivity::class.java))
         }
         binding.simpan.setOnClickListener {
             val jenis = "pengeluaran"
