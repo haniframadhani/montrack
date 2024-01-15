@@ -1,6 +1,7 @@
 package triplegato.montrack
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -30,7 +31,9 @@ class PengeluaranActivity : AppCompatActivity() {
             finish()
             return
         }
-
+        binding.tempat.setOnClickListener {
+            startActivity(Intent(this,MapsActivity::class.java))
+        }
         binding.date.setOnClickListener {
             showDatePickerDialog()
         }
