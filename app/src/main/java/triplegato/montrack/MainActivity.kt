@@ -38,16 +38,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun totalIncome() : String{
-        var total = db.getIncomeTotal()
+        var total = db.getIncomeTotal().toDouble()
         total = total/1000
-        total.toString()
-        return "$total"+"K"
+        var totalString = ""
+        if(total >= 1.0) {
+            var totalInt = total.toInt()
+            totalString = totalInt.toString()
+        } else {
+            totalString = total.toString()
+        }
+        return "$totalString"+"K"
     }
 
     fun totalOutcome() : String{
-        var total = db.getOutcomeTotal()
+        var total: Double = db.getOutcomeTotal().toDouble()
         total = total/1000
-        total.toString()
-        return "$total"+"K"
+        var totalString = ""
+        if(total >= 1.0) {
+            var totalInt = total.toInt()
+            totalString = totalInt.toString()
+        } else {
+            totalString = total.toString()
+        }
+        return "$totalString"+"K"
     }
 }
