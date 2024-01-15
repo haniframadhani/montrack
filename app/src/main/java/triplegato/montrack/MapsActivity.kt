@@ -33,7 +33,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding.root)
 
         // Initialize the Places API (Replace YOUR_API_KEY with your actual API key)
-        Places.initialize(applicationContext, "AIzaSyBIx_B6SYqNSGkczjZd0SuZigtIiMx74JA")
+        Places.initialize(applicationContext, "")
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
