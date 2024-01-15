@@ -10,5 +10,17 @@
   "repoHost": "https://github.com",
   "commitConvention": "angular",
   "skipCi": true,
-  "commitType": "docs"
+  "commitType": "docs",
+  "contributors": [
+    {
+      "login": "haniframadhani",
+      "name": "muhammad hanif ramadhani",
+      "avatar_url": "https://avatars.githubusercontent.com/u/69223521?v=4",
+      "profile": "https://haniframadhani.github.io/",
+      "contributions": [
+        "code",
+        "design"
+      ]
+    }
+  ]
 }
