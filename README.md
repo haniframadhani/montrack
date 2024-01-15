@@ -19,6 +19,7 @@ git clone https://github.com/haniframadhani/montrack
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://haniframadhani.github.io/"><img src="https://avatars.githubusercontent.com/u/69223521?v=4?s=100" width="100px;" alt="muhammad hanif ramadhani"/><br /><sub><b>muhammad hanif ramadhani</b></sub></a><br /><a href="https://github.com/haniframadhani/montrack/commits?author=haniframadhani" title="Code">💻</a> <a href="#design-haniframadhani" title="Design">🎨</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mrifainestli7"><img src="https://avatars.githubusercontent.com/u/101726009?v=4?s=100" width="100px;" alt="mrifainestli7"/><br /><sub><b>mrifainestli7</b></sub></a><br /><a href="https://github.com/haniframadhani/montrack/commits?author=mrifainestli7" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
