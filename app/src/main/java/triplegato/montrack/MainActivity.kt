@@ -32,5 +32,34 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         aktivitasAdapter.refreshData(db.getAllAktivitas())
+        binding.outcomeAmountIncome.text = totalIncome()
+        binding.outcomeAmountOutcome.text = totalOutcome()
+
+    }
+
+    fun totalIncome() : String{
+        var total = db.getIncomeTotal().toDouble()
+        total = total/1000
+        var totalString = ""
+        if(total >= 1.0) {
+            var totalInt = total.toInt()
+            totalString = totalInt.toString()
+        } else {
+            totalString = total.toString()
+        }
+        return "$totalString"+"K"
+    }
+
+    fun totalOutcome() : String{
+        var total: Double = db.getOutcomeTotal().toDouble()
+        total = total/1000
+        var totalString = ""
+        if(total >= 1.0) {
+            var totalInt = total.toInt()
+            totalString = totalInt.toString()
+        } else {
+            totalString = total.toString()
+        }
+        return "$totalString"+"K"
     }
 }

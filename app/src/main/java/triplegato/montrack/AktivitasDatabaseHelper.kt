@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class AktivitasDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+
     companion object {
         private const val DATABASE_NAME = "montrack.db"
         private const val DATABASE_VERSION = 1
@@ -17,6 +18,8 @@ class AktivitasDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
         private const val COLUMN_JUMLAH = "jumlah"
         private const val COLUMN_LOKASI = "lokasi"
         private const val COLUMN_DESKRIPSI = "deskripsi"
+        private const val PENGELUARAN = "pengeluaran"
+        private const val PEMASUKAN = "pemasukkan"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -53,7 +56,7 @@ class AktivitasDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
     fun getAllAktivitas(): List<Aktivitas> {
         val aktivitasList = mutableListOf<Aktivitas>()
         val db = readableDatabase
-        val query = "SELECT * FROM $TABLE_NAME"
+        val query = "SELECT * FROM $TABLE_NAME ORDER BY $COLUMN_TANGGAL DESC"
         val cursor = db.rawQuery(query, null)
 
         while(cursor.moveToNext()){
@@ -71,6 +74,82 @@ class AktivitasDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
         cursor.close()
         db.close()
         return aktivitasList
-
     }
+
+    fun getIncomeTotal(): Int {
+        val db = readableDatabase
+        val query = "SELECT SUM($COLUMN_JUMLAH) AS Total FROM $TABLE_NAME WHERE $COLUMN_JENIS_AKTIVITAS = 'pemasukkan'"
+        val cursor = db.rawQuery(query, null)
+
+        var total = 0
+
+        if (cursor.moveToFirst()) {
+            total = cursor.getInt(cursor.getColumnIndexOrThrow("Total"))
+        }
+
+        cursor.close()
+        db.close()
+
+        return total
+    }
+
+    fun getOutcomeTotal(): Int {
+        val db = readableDatabase
+        val query = "SELECT SUM($COLUMN_JUMLAH) AS Total FROM $TABLE_NAME WHERE $COLUMN_JENIS_AKTIVITAS = 'pengeluaran'"
+        val cursor = db.rawQuery(query, null)
+
+        var total = 0
+
+        if (cursor.moveToFirst()) {
+            total = cursor.getInt(cursor.getColumnIndexOrThrow("Total"))
+        }
+
+        cursor.close()
+        db.close()
+
+        return total
+    }
+
+    fun deleteAktivitas(id : Int){
+        val db = readableDatabase
+        val whereClause = "$COLUMN_ID = ?"
+        val whereArgs = arrayOf(id.toString())
+        db.delete(TABLE_NAME, whereClause, whereArgs)
+        db.close()
+    }
+
+    fun updateAktivitas(aktivitas: Aktivitas) {
+        val db = writableDatabase
+        val values = ContentValues().apply{
+            put(COLUMN_KATEGORI, aktivitas.kategori)
+            put(COLUMN_TANGGAL, aktivitas.tanggal)
+            put(COLUMN_JUMLAH, aktivitas.jumlah)
+            put(COLUMN_DESKRIPSI, aktivitas.deskripsi)
+            put(COLUMN_LOKASI, aktivitas.lokasi)
+        }
+        val whereClause = "$COLUMN_ID = ?"
+        val whereArgs = arrayOf(aktivitas.id.toString())
+        db.update(TABLE_NAME, values, whereClause, whereArgs)
+        db.close()
+    }
+
+    fun getAktivitasById(aktivitasId: Int): Aktivitas {
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $aktivitasId"
+        val cursor = db.rawQuery(query, null)
+        cursor.moveToFirst()
+
+        val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
+        val tanggal = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_TANGGAL))
+        val jenis_aktivitas = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_JENIS_AKTIVITAS))
+        val kategori = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_KATEGORI))
+        val jumlah = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_JUMLAH))
+        val lokasi = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LOKASI))
+        val deskripsi = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESKRIPSI))
+
+        cursor.close()
+        db.close()
+        return Aktivitas(id, kategori, tanggal, jumlah, jenis_aktivitas, lokasi, deskripsi)
+    }
+
 }
