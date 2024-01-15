@@ -118,6 +118,38 @@ class AktivitasDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
         db.close()
     }
 
+    fun updateAktivitas(aktivitas: Aktivitas) {
+        val db = writableDatabase
+        val values = ContentValues().apply{
+            put(COLUMN_KATEGORI, aktivitas.kategori)
+            put(COLUMN_TANGGAL, aktivitas.tanggal)
+            put(COLUMN_JUMLAH, aktivitas.jumlah)
+            put(COLUMN_DESKRIPSI, aktivitas.deskripsi)
+            put(COLUMN_LOKASI, aktivitas.lokasi)
+        }
+        val whereClause = "$COLUMN_ID = ?"
+        val whereArgs = arrayOf(aktivitas.id.toString())
+        db.update(TABLE_NAME, values, whereClause, whereArgs)
+        db.close()
+    }
 
+    fun getAktivitasById(aktivitasId: Int): Aktivitas {
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $aktivitasId"
+        val cursor = db.rawQuery(query, null)
+        cursor.moveToFirst()
+
+        val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
+        val tanggal = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_TANGGAL))
+        val jenis_aktivitas = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_JENIS_AKTIVITAS))
+        val kategori = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_KATEGORI))
+        val jumlah = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_JUMLAH))
+        val lokasi = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LOKASI))
+        val deskripsi = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESKRIPSI))
+
+        cursor.close()
+        db.close()
+        return Aktivitas(id, kategori, tanggal, jumlah, jenis_aktivitas, lokasi, deskripsi)
+    }
 
 }
